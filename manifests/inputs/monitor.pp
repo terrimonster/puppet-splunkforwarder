@@ -102,7 +102,7 @@ define splunkforwarder::inputs::monitor (
 
 
   concat::fragment { $_title:
-    target  => "${::splunkforwarder::splunk_home}/${target}",
+    target  => "${::splunkforwarder::splunk_home}/etc/system/local/${target}",
     order   => $order,
     content => template("${module_name}/inputs/50-monitor.erb"),
   }
