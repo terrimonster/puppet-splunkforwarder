@@ -94,15 +94,12 @@ define splunkforwarder::inputs::monitor (
 
   validate_string($index_and_forward_routing)
 
-  concat { $target:
-    ensure => present,
-  }
 
   $_title = regsubst($title, '(\s+|\*)', '_', 'G')
 
 
   concat::fragment { $_title:
-    target  => "${::splunkforwarder::splunk_home}/etc/system/local/${target}",
+    target  => "${::splunkforwarder::inputs::path}/${target}",
     order   => $order,
     content => template("${module_name}/inputs/50-monitor.erb"),
   }
