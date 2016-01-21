@@ -102,5 +102,6 @@ define splunkforwarder::inputs::monitor (
     target  => "${::splunkforwarder::inputs::path}/${target}",
     order   => $order,
     content => template("${module_name}/inputs/50-monitor.erb"),
+    require => Concat['inputs.conf'],
   }
 }
